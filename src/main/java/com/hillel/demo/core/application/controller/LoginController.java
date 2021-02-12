@@ -1,4 +1,4 @@
-package com.hillel.demo.core.application.contoller;
+package com.hillel.demo.core.application.controller;
 
 import com.hillel.demo.config.util.JwtUtil;
 import com.hillel.demo.core.application.dto.LoginRequestDto;

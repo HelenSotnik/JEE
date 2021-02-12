@@ -23,7 +23,7 @@ public class UserFacade {
         this.userMapper = userMapper;
     }
 
-    public PageDto<UserDto> findAll(int pageNum, int pageSize) {
+    public PageDto<UserDto> findAll(int pageNum, int pageSize){
         List<UserDto> userList = userService.findAll(pageNum, pageSize).getPageContent()
                 .stream()
                 .map(userMapper::toDto)

@@ -1,4 +1,4 @@
-package com.hillel.demo.core.application.contoller;
+package com.hillel.demo.core.application.controller;
 
 import com.hillel.demo.core.application.dto.AddUserRequestDto;
 import com.hillel.demo.core.application.dto.PageDto;
@@ -29,7 +29,7 @@ public class UserController {
     @ApiOperation("Find all users")
     public PageDto<UserDto> findAll(
             @RequestParam(value = "pageNum", required = false, defaultValue = "0") Integer pageNum,
-            @RequestParam(value = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
+            @RequestParam(value = "pageSize", required = false, defaultValue = "5") Integer pageSize) {
         return userFacade.findAll(pageNum, pageSize);
     }
 
