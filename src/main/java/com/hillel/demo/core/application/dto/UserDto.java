@@ -3,6 +3,7 @@ package com.hillel.demo.core.application.dto;
 import com.hillel.demo.core.database.entity.Gender;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.util.*;
 
@@ -17,5 +18,5 @@ public class UserDto {
     private Integer age;
     private List<BankAccountDto> bankAccounts;
     private HospitalDto hospitalEntity;
-    private Collection<AuthorityDto> authorities;
+    private Set<GrantedAuthority> authorities;
 }

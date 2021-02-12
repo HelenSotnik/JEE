@@ -1,5 +1,4 @@
-package com.hillel.demo.core.application.contoller;
-
+package com.hillel.demo.core.application.controller;
 
 import com.hillel.demo.core.application.dto.AddUserRequestDto;
 import com.hillel.demo.core.application.dto.UserDto;

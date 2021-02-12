@@ -37,7 +37,7 @@ public class UserService implements UserDetailsService {
         userMapper.toDto(saveUser(user));
     }
 
-    public PageDto<User> findAll(Integer pageNum, Integer pageSize) {
+    public PageDto<User> findAll(Integer pageNum, Integer pageSize){
         // return someClient.getAllUsers();
         List<User> userList = StreamSupport
                 .stream(userRepository.findAll(PageRequest.of(pageNum, pageSize)).spliterator(), false)

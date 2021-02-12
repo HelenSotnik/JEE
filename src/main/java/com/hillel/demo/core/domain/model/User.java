@@ -4,10 +4,14 @@ import com.hillel.demo.core.database.entity.Gender;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 
 @Getter
 @Setter
@@ -21,16 +25,16 @@ public class User implements UserDetails {
     private Integer age;
     private List<BankAccount> bankAccounts;
     private Hospital hospitalEntity;
-    private Collection<GrantedAuthority> authorities;
+    private Set<GrantedAuthority> authoritySet;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authoritySet;
+    }
 
     @Override
     public String getUsername() {
         return email;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
     }
 
     @Override

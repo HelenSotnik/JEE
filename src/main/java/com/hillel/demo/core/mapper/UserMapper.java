@@ -5,10 +5,13 @@ import com.hillel.demo.core.application.dto.UserDto;
 import com.hillel.demo.core.database.entity.UserEntity;
 import com.hillel.demo.core.domain.model.User;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Component
 public class UserMapper {
@@ -26,7 +29,14 @@ public class UserMapper {
     }
 
     public User toModel(UserEntity userEntity) {
-        return Objects.isNull(userEntity) ? null : mapper.map(userEntity, User.class);
+        if (userEntity == null) {
+            return null;
+        }
+        User user = mapper.map(userEntity, User.class);
+        user.setAuthoritySet(userEntity.getAuthorities().stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toSet()));
+        return user;
     }
 
     public User dtoToModel(AddUserRequestDto userDto) {

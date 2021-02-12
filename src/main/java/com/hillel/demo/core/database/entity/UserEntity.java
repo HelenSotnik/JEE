@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+
+import javax.management.relation.Role;
 import javax.persistence.*;
 import java.util.*;
 
@@ -46,9 +48,6 @@ public class UserEntity {
     @JoinColumn(name = "hospital_id")
     private HospitalEntity hospitalEntity;
 
-    @ManyToMany
-    @JoinTable(name = "users_authorities",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
-    private Collection<AuthorityEntity> authorities;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> authorities = new HashSet<>();
 }
