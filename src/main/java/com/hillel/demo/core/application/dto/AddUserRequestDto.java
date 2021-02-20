@@ -39,11 +39,12 @@ public class AddUserRequestDto {
     @Min(18)
     @Max(70)
     @UserAgeConstraint
+    @ApiModelProperty(value = "User age", example = "40", required = true)
     private Integer age;
 
-    @ApiModelProperty(value = "Bank Account of User", required = true)
+    @ApiModelProperty(value = "Bank Account of User", required = false)
     private List<BankAccountDto> bankAccounts;
 
-    @ApiModelProperty(value = "User hospital info", required = true)
+    @ApiModelProperty(value = "User hospital info", required = false)
     private HospitalDto hospitalEntity;
 }

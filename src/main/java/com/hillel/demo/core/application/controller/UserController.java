@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//@CrossOrigin(origins = "http://localhost:4200")
 @Api("User Controller")
 @RestController
 @RequestMapping("/api/users")
@@ -23,6 +24,7 @@ public class UserController {
     public UserController(UserFacade userFacade) {
         this.userFacade = userFacade;
     }
+
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -92,14 +94,14 @@ public class UserController {
     @GetMapping("/sort=last_name&sortType=ASC")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Find users order by Last Name Ascending")
-    public List<UserDto> findUsersByFirstLastNameAscending() {
+    public List<UserDto> findUsersByLastNameAscending() {
         return userFacade.findUsersByLastNameAscending();
     }
 
-    @GetMapping("//sort=age&sortType=DESC")
+    @GetMapping("/sort=lastName&sortType=DESC")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Find users order by Last Name Descending")
-    public List<UserDto> findUsersByFirstLastNameDescending() {
+    public List<UserDto> findUsersByLastNameDescending() {
         return userFacade.findUsersByLastNameDescending();
     }
 

@@ -22,7 +22,7 @@ services:
     depends_on:
       - db
     ports:
-      - 8092:8080
+      - 8092:8079
     expose:
       - 8092
     networks:
