@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
-import javax.management.relation.Role;
 import javax.persistence.*;
 import java.util.*;
 
@@ -17,7 +15,6 @@ import java.util.*;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
     @Enumerated(EnumType.STRING)

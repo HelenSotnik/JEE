@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Lazy
     public SecurityConfig(UserService userDetailsService) {
-        this.userDetailsService =  userDetailsService;
+        this.userDetailsService = userDetailsService;
     }
 
     @Bean

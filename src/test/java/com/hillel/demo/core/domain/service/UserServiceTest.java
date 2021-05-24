@@ -1,5 +1,8 @@
 package com.hillel.demo.core.domain.service;
 
+import com.google.common.collect.ImmutableList;
+import com.hillel.demo.client.someapi.SomeClient;
+import com.hillel.demo.core.application.dto.PageDto;
 import com.hillel.demo.core.database.entity.Gender;
 import com.hillel.demo.core.database.entity.UserEntity;
 import com.hillel.demo.core.database.repository.UserRepository;
@@ -10,18 +13,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
+import static org.springframework.data.domain.PageRequest.*;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -32,6 +34,9 @@ class UserServiceTest {
 
     @Mock
     private UserRepository userRepository;
+
+    @Mock
+    private SomeClient someClient;
 
     @Mock
     private UserMapper userMapper;
@@ -69,5 +74,12 @@ class UserServiceTest {
         when(userRepository.findByEmail(anyString())).thenReturn(Optional.empty());
         assertThrows(UsernameNotFoundException.class,
                 () -> userService.loadUserByUsername("null@gmail.com"));
+    }
+
+    @Test
+    void findAllUsersTest() {
+        when(someClient.getAllUsers()).thenReturn(Collections.singletonList(new User()));
+        List<User> allUsers = userService.findAllUsers();
+        assertEquals(1, allUsers.size());
     }
 }
