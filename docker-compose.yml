@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:11.1
+    container_name: app-database
+    restart: always
+    volumes:
+      - all-service-db-volume:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    networks:
+      - backend
+  application:
+    build: .
+    container_name: my_app
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 8092:8079
+    expose:
+      - 8092
+    networks:
+      - backend
+networks:
+  backend:
+
+volumes:
+  all-service-db-volume:
